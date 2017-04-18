@@ -1,12 +1,18 @@
 PODS:
   - Alamofire (4.4.0)
+  - SnapKit (3.2.0)
+  - WechatOpenSDK (1.7.7)
 
 DEPENDENCIES:
   - Alamofire
+  - SnapKit
+  - WechatOpenSDK
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  WechatOpenSDK: cbd332148eb792d444ed4eec94f421d98f2046ee
 
-PODFILE CHECKSUM: 0dbb04adda1ed006e36f8f254d22fea1858a9c26
+PODFILE CHECKSUM: 3740449521bd68c4431418e00d38fef03d843296
 
 COCOAPODS: 1.2.0

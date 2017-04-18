@@ -20,8 +20,13 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         view.addSubview(button)
         
-        let registerButton = UIButton(type: .custom)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
     }
     
     func buttonAction() {
@@ -45,7 +50,6 @@ class HomeViewController: UIViewController {
     }
     
     func registerButtonActoin() {
-        let urlString = "http://localhost:8080/register"
-        let parameterDic = ["name":"abcde"]
+        
     }
 }

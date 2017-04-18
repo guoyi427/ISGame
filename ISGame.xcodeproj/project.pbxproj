@@ -16,6 +16,9 @@
 		30A873CE1EA24C9200CCCE8B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873CD1EA24C9200CCCE8B /* HomeViewController.swift */; };
 		30A873D21EA24D0C00CCCE8B /* PersonalCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873D11EA24D0C00CCCE8B /* PersonalCenterViewController.swift */; };
 		30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873D51EA24D9100CCCE8B /* LoginViewController.swift */; };
+		5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */; };
+		5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */; };
+		5DC09EA31EA6208D00E173F1 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA21EA6208D00E173F1 /* CustomColor.swift */; };
 		D5207FAF146F9AAD70E5046E /* Pods_ISGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC4ACD3BBDD25E323B435EF /* Pods_ISGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,10 @@
 		30A873D11EA24D0C00CCCE8B /* PersonalCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCenterViewController.swift; sourceTree = "<group>"; };
 		30A873D51EA24D9100CCCE8B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4FC4ACD3BBDD25E323B435EF /* Pods_ISGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatManager.swift; sourceTree = "<group>"; };
+		5DC09E9F1EA6109C00E173F1 /* ISGame+bridging+Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISGame+bridging+Header.h"; sourceTree = "<group>"; };
+		5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
+		5DC09EA21EA6208D00E173F1 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomColor.swift; path = ISGame/LoginAndRegister/Controller/CustomColor.swift; sourceTree = SOURCE_ROOT; };
 		9711349601F46096B47DBE83 /* Pods-ISGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISGame/Pods-ISGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +124,7 @@
 				30A873981EA24ABD00CCCE8B /* Assets.xcassets */,
 				30A8739A1EA24ABD00CCCE8B /* LaunchScreen.storyboard */,
 				30A8739D1EA24ABD00CCCE8B /* Info.plist */,
+				5DC09E9F1EA6109C00E173F1 /* ISGame+bridging+Header.h */,
 			);
 			path = ISGame;
 			sourceTree = "<group>";
@@ -223,6 +231,7 @@
 		30A873C91EA24B6200CCCE8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5DC09EA21EA6208D00E173F1 /* CustomColor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +246,7 @@
 		30A873D31EA24D8000CCCE8B /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
+				5DC09E9C1EA60DBF00E173F1 /* Model */,
 				30A873D41EA24D8000CCCE8B /* Controller */,
 			);
 			path = LoginAndRegister;
@@ -246,8 +256,17 @@
 			isa = PBXGroup;
 			children = (
 				30A873D51EA24D9100CCCE8B /* LoginViewController.swift */,
+				5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5DC09E9C1EA60DBF00E173F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		75571E45447D1441FFCC7BD0 /* Frameworks */ = {
@@ -456,6 +475,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */,
+				5DC09EA31EA6208D00E173F1 /* CustomColor.swift in Sources */,
+				5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */,
+				5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */,
 				30A873921EA24ABD00CCCE8B /* AppDelegate.swift in Sources */,
 				30A873CE1EA24C9200CCCE8B /* HomeViewController.swift in Sources */,
 				30A873D21EA24D0C00CCCE8B /* PersonalCenterViewController.swift in Sources */,
@@ -617,6 +639,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.guoyi.ISGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ISGame/ISGame+bridging+Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -632,6 +655,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.guoyi.ISGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ISGame/ISGame+bridging+Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
