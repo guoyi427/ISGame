@@ -14,6 +14,9 @@ class LoginViewController: UIViewController {
     
     var socket:WebSocket?
     let messageLabel = UILabel(frame: CGRect(x: 10, y: 100, width: 300, height: 300))
+    let uid = "2020"
+    let to = "1010"
+    let host = "ws://192.168.28.71:8282"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +43,7 @@ class LoginViewController: UIViewController {
         sendButton.backgroundColor = UIColor.yellow
         sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         view.addSubview(sendButton)
-        
-        socket = WebSocket(url: URL(string: "ws://192.168.36.82:8282")!)
-        socket?.delegate = self
-        socket?.connect()
+
     }
 }
 
@@ -55,17 +55,15 @@ extension LoginViewController {
 //        }
 //        navigationController?.pushViewController(EditUserInfoViewController(), animated: true)
        
-        let loginMessage = ["uid":"89757", "message":"login", "code":10]
-        do {
-            let jsonDic = try JSONSerialization.data(withJSONObject: loginMessage, options: .prettyPrinted)
-            socket?.write(data: jsonDic)
-        } catch {
-            debugPrint(error)
+        if socket == nil {
+            socket = WebSocket(url: URL(string: host)!)
+            socket?.delegate = self
+            socket?.connect()
         }
     }
     
     @objc fileprivate func sendMessage() {
-        let message = ["message":"郭毅是最帅的", "code":0]
+        let message:[String:Any] = ["message":"郭毅是最帅的", "code":0, "uid":uid, "to":to]
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: message, options: .prettyPrinted)
             socket?.write(data: jsonData)
@@ -78,6 +76,13 @@ extension LoginViewController {
 extension LoginViewController:WebSocketDelegate {
     func websocketDidConnect(socket: WebSocket) {
         debugPrint("did connect \(socket)")
+        let loginMessage:[String:Any] = ["uid":uid, "message":"login", "code":10]
+        do {
+            let jsonDic = try JSONSerialization.data(withJSONObject: loginMessage, options: .prettyPrinted)
+            socket.write(data: jsonDic)
+        } catch {
+            debugPrint(error)
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
