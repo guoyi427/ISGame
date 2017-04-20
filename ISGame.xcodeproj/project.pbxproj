@@ -18,7 +18,8 @@
 		30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873D51EA24D9100CCCE8B /* LoginViewController.swift */; };
 		5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */; };
 		5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */; };
-		5DC09EA31EA6208D00E173F1 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA21EA6208D00E173F1 /* CustomColor.swift */; };
+		5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE342681EA8A7AD00E271A4 /* CustomColor.swift */; };
+		5DE3426B1EA8A7BE00E271A4 /* SocketControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3426A1EA8A7BE00E271A4 /* SocketControl.swift */; };
 		D5207FAF146F9AAD70E5046E /* Pods_ISGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC4ACD3BBDD25E323B435EF /* Pods_ISGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +61,8 @@
 		5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatManager.swift; sourceTree = "<group>"; };
 		5DC09E9F1EA6109C00E173F1 /* ISGame+bridging+Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISGame+bridging+Header.h"; sourceTree = "<group>"; };
 		5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
-		5DC09EA21EA6208D00E173F1 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomColor.swift; path = ISGame/LoginAndRegister/Controller/CustomColor.swift; sourceTree = SOURCE_ROOT; };
+		5DE342681EA8A7AD00E271A4 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		5DE3426A1EA8A7BE00E271A4 /* SocketControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketControl.swift; sourceTree = "<group>"; };
 		9711349601F46096B47DBE83 /* Pods-ISGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISGame/Pods-ISGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +117,7 @@
 		30A873901EA24ABD00CCCE8B /* ISGame */ = {
 			isa = PBXGroup;
 			children = (
-				30A873C71EA24B6200CCCE8B /* Common */,
+				5DE342631EA8A76700E271A4 /* Common */,
 				30A873D31EA24D8000CCCE8B /* LoginAndRegister */,
 				30A873BF1EA24B1D00CCCE8B /* Home */,
 				30A873C31EA24B1D00CCCE8B /* PersonalCenter */,
@@ -211,38 +213,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		30A873C71EA24B6200CCCE8B /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				30A873C81EA24B6200CCCE8B /* Controller */,
-				30A873C91EA24B6200CCCE8B /* Model */,
-				30A873CA1EA24B6200CCCE8B /* View */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		30A873C81EA24B6200CCCE8B /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		30A873C91EA24B6200CCCE8B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5DC09EA21EA6208D00E173F1 /* CustomColor.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		30A873CA1EA24B6200CCCE8B /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		30A873D31EA24D8000CCCE8B /* LoginAndRegister */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +237,31 @@
 				5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5DE342631EA8A76700E271A4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5DE342641EA8A76700E271A4 /* Control */,
+				5DE342661EA8A76700E271A4 /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5DE342641EA8A76700E271A4 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				5DE3426A1EA8A7BE00E271A4 /* SocketControl.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		5DE342661EA8A76700E271A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DE342681EA8A7AD00E271A4 /* CustomColor.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		75571E45447D1441FFCC7BD0 /* Frameworks */ = {
@@ -474,8 +469,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE3426B1EA8A7BE00E271A4 /* SocketControl.swift in Sources */,
 				30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */,
-				5DC09EA31EA6208D00E173F1 /* CustomColor.swift in Sources */,
+				5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */,
 				5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */,
 				5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */,
 				30A873921EA24ABD00CCCE8B /* AppDelegate.swift in Sources */,

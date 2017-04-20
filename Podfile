@@ -5,5 +5,4 @@ target 'ISGame' do
   pod 'Alamofire'
   pod 'SnapKit'
   pod 'Starscream'
-  pod 'WechatOpenSDK'
 end
