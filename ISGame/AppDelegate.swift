@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         let tabBarC = UITabBarController()
         let homeVC = HomeViewController()
+        homeVC.title = "首页"
         let pcVC = PersonalCenterViewController()
+        pcVC.title = "个人中心"
         tabBarC.viewControllers = [homeVC, pcVC]
         window!.rootViewController = tabBarC
         window!.makeKeyAndVisible()

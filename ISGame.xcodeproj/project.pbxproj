@@ -20,6 +20,7 @@
 		5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */; };
 		5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE342681EA8A7AD00E271A4 /* CustomColor.swift */; };
 		5DE3426B1EA8A7BE00E271A4 /* SocketControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3426A1EA8A7BE00E271A4 /* SocketControl.swift */; };
+		5DE7A3561EADFF27000F7E2B /* UserControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE7A3551EADFF27000F7E2B /* UserControl.swift */; };
 		D5207FAF146F9AAD70E5046E /* Pods_ISGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC4ACD3BBDD25E323B435EF /* Pods_ISGame.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
 		5DE342681EA8A7AD00E271A4 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		5DE3426A1EA8A7BE00E271A4 /* SocketControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketControl.swift; sourceTree = "<group>"; };
+		5DE7A3551EADFF27000F7E2B /* UserControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserControl.swift; sourceTree = "<group>"; };
 		9711349601F46096B47DBE83 /* Pods-ISGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ISGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ISGame/Pods-ISGame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +244,7 @@
 		5DE342631EA8A76700E271A4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5DE7A3521EADFBD9000F7E2B /* Model */,
 				5DE342641EA8A76700E271A4 /* Control */,
 				5DE342661EA8A76700E271A4 /* View */,
 			);
@@ -262,6 +265,14 @@
 				5DE342681EA8A7AD00E271A4 /* CustomColor.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5DE7A3521EADFBD9000F7E2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DE7A3551EADFF27000F7E2B /* UserControl.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		75571E45447D1441FFCC7BD0 /* Frameworks */ = {
@@ -474,6 +485,7 @@
 				5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */,
 				5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */,
 				5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */,
+				5DE7A3561EADFF27000F7E2B /* UserControl.swift in Sources */,
 				30A873921EA24ABD00CCCE8B /* AppDelegate.swift in Sources */,
 				30A873CE1EA24C9200CCCE8B /* HomeViewController.swift in Sources */,
 				30A873D21EA24D0C00CCCE8B /* PersonalCenterViewController.swift in Sources */,

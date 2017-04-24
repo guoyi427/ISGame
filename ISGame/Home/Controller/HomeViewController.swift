@@ -20,15 +20,30 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         view.addSubview(button)
         
+        //  判断是否登陆了
+        _judgeLogin()
         
+        SocketControl.instance.connectHost()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.present(UINavigationController(rootViewController: LoginViewController()), animated: true, completion: nil)
     }
     
+    fileprivate func _judgeLogin() {
+        if UserControl.shared.getUid() == "" {
+            let loginVC = LoginViewController()
+            let navi = UINavigationController(rootViewController: loginVC)
+            loginVC.navigationController?.setNavigationBarHidden(true, animated: false)
+            self.present(navi, animated: true, completion: nil)
+        }
+    }
+    
+}
+
+//MARK: Button Action
+extension HomeViewController {
     func buttonAction() {
         let imageData = UIImagePNGRepresentation(#imageLiteral(resourceName: "demo"))
         let urlString = "http://localhost:8080/upload"
@@ -49,7 +64,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func registerButtonActoin() {
-        
+    func sendMessage() {
+        SocketControl.instance.sendTextMessage(text: "嗯嗯", to: "999")
     }
 }
