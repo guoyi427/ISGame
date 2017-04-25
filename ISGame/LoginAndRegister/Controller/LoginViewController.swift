@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 
-let Host = "192.168.28.110"
 class LoginViewController: UIViewController {
     
     var _wx_id = ""
@@ -54,15 +53,18 @@ extension LoginViewController {
     @objc fileprivate func wechatLoginButtonAction() {
         let para = ["wx_id":_wx_id,
                     "name":_name]
-        let url = "http://\(Host):8080/wx_login"
+        let url = "http://\(Host)/wx_login"
         Alamofire.request(url, method: .get, parameters:para).responseJSON { [unowned self](response) in
             switch response.result {
             case .success(let result):
                 if let resultDic = result as? [String: Any] {
                     debugPrint("login response = \(resultDic)")
-                    if let s_token = resultDic["token"] as? String, let s_uid = resultDic["uid"] as? String {
+                    if let s_token = resultDic["token"] as? String,
+                        let s_uid = resultDic["uid"] as? String,
+                        let s_name = resultDic["name"] as? String {
                         UserControl.shared.save(token: s_token)
                         UserControl.shared.save(uid: s_uid)
+                        UserControl.shared.save(name: s_name)
                     }
                     self.dismiss(animated: true, completion: nil)
                 }

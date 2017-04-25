@@ -14,12 +14,13 @@ class UserControl {
     fileprivate let _userDefaults:UserDefaults = UserDefaults.standard
     fileprivate let Key_token = "game_token"
     fileprivate let Key_uid = "game_uid"
-    fileprivate var _uid:String
-    fileprivate var _token:String
+    fileprivate let Key_name = "game_name"
+    fileprivate var _uid:String = ""
+    fileprivate var _token:String = ""
+    fileprivate var _name:String = ""
     
     init() {
-        _uid = ""
-        _token = ""
+
     }
     
     func save(token:String) {
@@ -30,6 +31,11 @@ class UserControl {
     func save(uid:String) {
         _userDefaults.set(uid, forKey: Key_uid)
         _uid = uid
+    }
+    
+    func save(name: String) {
+        _userDefaults.set(name, forKey: Key_name)
+        _name = name
     }
     
     func getToken() -> String {
@@ -46,10 +52,19 @@ class UserControl {
         return _uid
     }
     
+    func getName() -> String {
+        if _name == "", let s_name = _userDefaults.object(forKey: Key_name) as? String {
+            _name = s_name
+        }
+        return _name
+    }
+    
     func clearup() {
         _token = ""
         _uid = ""
+        _name = ""
         _userDefaults.removeObject(forKey: Key_uid)
         _userDefaults.removeObject(forKey: Key_token)
+        _userDefaults.removeObject(forKey: Key_name)
     }
 }

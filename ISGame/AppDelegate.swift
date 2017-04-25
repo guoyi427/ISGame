@@ -8,6 +8,8 @@
 
 import UIKit
 
+let Host = "192.168.36.66:8080"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

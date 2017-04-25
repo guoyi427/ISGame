@@ -20,31 +20,32 @@ class HomeViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         view.addSubview(button)
         
-        //  判断是否登陆了
-        _judgeLogin()
         
-        SocketControl.instance.connectHost()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        _judgeLogin()
         
     }
     
+    /// 判断是否登陆
     fileprivate func _judgeLogin() {
         if UserControl.shared.getUid() == "" {
             let loginVC = LoginViewController()
             let navi = UINavigationController(rootViewController: loginVC)
             loginVC.navigationController?.setNavigationBarHidden(true, animated: false)
             self.present(navi, animated: true, completion: nil)
+        } else {
+            SocketControl.instance.connectHost()
         }
     }
-    
 }
 
 //MARK: Button Action
 extension HomeViewController {
     func buttonAction() {
+
         let imageData = UIImagePNGRepresentation(#imageLiteral(resourceName: "demo"))
         let urlString = "http://localhost:8080/upload"
         

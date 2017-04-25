@@ -16,6 +16,7 @@
 		30A873CE1EA24C9200CCCE8B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873CD1EA24C9200CCCE8B /* HomeViewController.swift */; };
 		30A873D21EA24D0C00CCCE8B /* PersonalCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873D11EA24D0C00CCCE8B /* PersonalCenterViewController.swift */; };
 		30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A873D51EA24D9100CCCE8B /* LoginViewController.swift */; };
+		5D61F1E01EAF204200CAB743 /* SocketUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61F1DF1EAF204200CAB743 /* SocketUserModel.swift */; };
 		5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */; };
 		5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */; };
 		5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE342681EA8A7AD00E271A4 /* CustomColor.swift */; };
@@ -59,6 +60,7 @@
 		30A873D11EA24D0C00CCCE8B /* PersonalCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalCenterViewController.swift; sourceTree = "<group>"; };
 		30A873D51EA24D9100CCCE8B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4FC4ACD3BBDD25E323B435EF /* Pods_ISGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ISGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D61F1DF1EAF204200CAB743 /* SocketUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketUserModel.swift; sourceTree = "<group>"; };
 		5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatManager.swift; sourceTree = "<group>"; };
 		5DC09E9F1EA6109C00E173F1 /* ISGame+bridging+Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISGame+bridging+Header.h"; sourceTree = "<group>"; };
 		5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				5DE7A3551EADFF27000F7E2B /* UserControl.swift */,
+				5D61F1DF1EAF204200CAB743 /* SocketUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				5DE3426B1EA8A7BE00E271A4 /* SocketControl.swift in Sources */,
 				30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */,
 				5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */,
+				5D61F1E01EAF204200CAB743 /* SocketUserModel.swift in Sources */,
 				5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */,
 				5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */,
 				5DE7A3561EADFF27000F7E2B /* UserControl.swift in Sources */,
