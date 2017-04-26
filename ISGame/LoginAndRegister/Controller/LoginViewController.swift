@@ -67,6 +67,7 @@ extension LoginViewController {
                         UserControl.shared.save(name: s_name)
                     }
                     self.dismiss(animated: true, completion: nil)
+                    SocketControl.instance.connectHost()
                 }
                 break
             case .failure(let error):

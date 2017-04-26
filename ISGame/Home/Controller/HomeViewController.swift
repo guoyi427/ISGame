@@ -25,21 +25,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        _judgeLogin()
-        
     }
     
-    /// 判断是否登陆
-    fileprivate func _judgeLogin() {
-        if UserControl.shared.getUid() == "" {
-            let loginVC = LoginViewController()
-            let navi = UINavigationController(rootViewController: loginVC)
-            loginVC.navigationController?.setNavigationBarHidden(true, animated: false)
-            self.present(navi, animated: true, completion: nil)
-        } else {
-            SocketControl.instance.connectHost()
-        }
-    }
+   
 }
 
 //MARK: Button Action
@@ -67,5 +55,9 @@ extension HomeViewController {
     
     func sendMessage() {
         SocketControl.instance.sendTextMessage(text: "嗯嗯", to: "999")
+    }
+    
+    func creatRoom() {
+        SocketControl.instance.creatRoom()
     }
 }

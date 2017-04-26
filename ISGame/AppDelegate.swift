@@ -8,7 +8,8 @@
 
 import UIKit
 
-let Host = "192.168.36.66:8080"
+let Host = "192.168.28.172:8080"
+let Socket_Host = "wx://192.168.28.172:8282/chat"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarC.viewControllers = [homeVC, pcVC]
         window!.rootViewController = tabBarC
         window!.makeKeyAndVisible()
+        
+        _judgeLogin()
         
         return true
     }
@@ -59,5 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate {
+    /// 判断是否登陆
+    fileprivate func _judgeLogin() {
+        if UserControl.shared.getUid() == "" {
+            let loginVC = LoginViewController()
+            let navi = UINavigationController(rootViewController: loginVC)
+            loginVC.navigationController?.setNavigationBarHidden(true, animated: false)
+            window!.rootViewController!.present(navi, animated: true, completion: nil)
+        } else {
+            SocketControl.instance.connectHost()
+        }
+    }
 }
 

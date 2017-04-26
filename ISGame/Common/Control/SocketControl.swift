@@ -9,8 +9,6 @@
 import Foundation
 import Starscream
 
-let Socket_Host = "wx://192.168.36.66:8282/chat"
-
 /*
  code
  */
@@ -68,10 +66,10 @@ class SocketControl {
             debugPrint("uid is empty")
             return
         }
-        let loginMessage:[String:Any] = ["code": SocketCode.Login.rawValue,
+        let dic:[String:Any] = ["code": SocketCode.Login.rawValue,
                                          "message": "login"]
         
-        sendData(jsonDic: loginMessage)
+        _sendData(jsonDic: dic)
     }
     
     /// 普通消息
@@ -79,10 +77,10 @@ class SocketControl {
         if _socket.isConnected == false || _uid == "" {
             return
         }
-        let messageDic:[String: Any] = ["message":text,
+        let dic:[String: Any] = ["message":text,
                                         "to":to,
                                         "code":SocketCode.Chat.rawValue]
-        sendData(jsonDic: messageDic)
+        _sendData(jsonDic: dic)
     }
     
     /// 查询用户列表消息
@@ -90,7 +88,7 @@ class SocketControl {
         let messageDic:[String:Any] = ["code":SocketCode.QueryUserList.rawValue]
         _queryUserListCallback = complete
         
-        sendData(jsonDic: messageDic)
+        _sendData(jsonDic: messageDic)
     }
 }
 
@@ -99,27 +97,32 @@ extension SocketControl {
     
     /// 创建房间
     func creatRoom() {
-        let messageDic = ["code":SocketCode.CreatRoom.rawValue]
-        sendData(jsonDic: messageDic)
+        let dic = ["code":SocketCode.CreatRoom.rawValue]
+        _sendData(jsonDic: dic)
     }
 
     /// 加入房间
     func inRoom(roomID:String) {
-        let messageDic:[String:Any] = ["code":SocketCode.InRoom.rawValue, "room_id":roomID]
-        sendData(jsonDic: messageDic)
+        let dic:[String:Any] = ["code":SocketCode.InRoom.rawValue, "room_id":roomID]
+        _sendData(jsonDic: dic)
     }
     
     /// 查询房间列表
     func queryRoomList() {
-        let messageDic = ["code":SocketCode.QueryRoomList.rawValue]
-        sendData(jsonDic: messageDic)
+        let dic = ["code":SocketCode.QueryRoomList.rawValue]
+        _sendData(jsonDic: dic)
+    }
+    
+    /// 发送群消息
+    func sendGroupMessage() {
+        
     }
 }
 
 //MARK: Private Methods
 extension SocketControl {
     /// 统一处理发送信息， 加上默认字段
-    fileprivate func sendData(jsonDic:[String:Any]) {
+    fileprivate func _sendData(jsonDic:[String:Any]) {
         do {
             var result = jsonDic
             result.updateValue(_uid, forKey: "uid")
@@ -132,7 +135,49 @@ extension SocketControl {
         } catch {
             debugPrint(error)
         }
-
+    }
+    
+    /// 统一处理接受消息
+    fileprivate func _receiveData(jsonDic:[String:Any]) {
+        if let codeInt = jsonDic["code"] as? Int, let code = SocketCode.init(rawValue: codeInt)  {
+            switch code {
+            case .QueryUserList:
+                _analysisUserList(jsonDic: jsonDic)
+                break
+            case .Chat:
+                break
+            case .Group:
+                break
+            case .CreatRoom:
+                break
+            case .InRoom:
+                break
+            case .OutRoom:
+                break
+            case .QueryRoomList:
+                break
+                
+            default:
+                break
+            }
+        } else {
+            //  无code
+            
+        }
+    }
+    
+    fileprivate func _analysisUserList(jsonDic:[String:Any]) {
+        if let userList = jsonDic["userList"] as? [[String:String]] {
+            var userModelList:[SocketUserModel] = []
+            for userDic in userList {
+                let userModel = SocketUserModel(json: userDic)
+                userModelList.append(userModel)
+            }
+            
+            if let complete = _queryUserListCallback {
+                complete(userModelList)
+            }
+        }
     }
 }
 
@@ -152,16 +197,9 @@ extension SocketControl: WebSocketDelegate {
         do {
             let jsonDic = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             debugPrint(jsonDic)
-            if let n_jsonDic = jsonDic as? [String:Any], let userList = n_jsonDic["userList"] as? [[String:String]] {
-                var userModelList:[SocketUserModel] = []
-                for userDic in userList {
-                    let userModel = SocketUserModel(json: userDic)
-                    userModelList.append(userModel)
-                }
-                
-                if let complete = _queryUserListCallback {
-                    complete(userModelList)
-                }
+            
+            if let n_json = jsonDic as? [String:Any] {
+                _receiveData(jsonDic: n_json)
             }
             
         } catch {
