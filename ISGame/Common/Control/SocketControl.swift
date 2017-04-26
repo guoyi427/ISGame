@@ -37,7 +37,8 @@ class SocketControl {
     
     /// 查询在线用户成功回调
     fileprivate var _queryUserListCallback:(([SocketUserModel])->Void)?
-    
+    fileprivate var _creatroomCallback:((Bool)->Void)?
+    fileprivate var _queryRoomListCallback:(([[String:Any]])->Void)?
     
     init() {
         _socket.delegate = self
@@ -96,7 +97,8 @@ class SocketControl {
 extension SocketControl {
     
     /// 创建房间
-    func creatRoom() {
+    func creatRoom(complete:@escaping (Bool)->Void) {
+        _creatroomCallback = complete
         let dic = ["code":SocketCode.CreatRoom.rawValue]
         _sendData(jsonDic: dic)
     }
@@ -108,7 +110,8 @@ extension SocketControl {
     }
     
     /// 查询房间列表
-    func queryRoomList() {
+    func queryRoomList(complete:@escaping ([[String:Any]])->Void) {
+        _queryRoomListCallback = complete
         let dic = ["code":SocketCode.QueryRoomList.rawValue]
         _sendData(jsonDic: dic)
     }
@@ -149,12 +152,16 @@ extension SocketControl {
             case .Group:
                 break
             case .CreatRoom:
+                if let n_complete = _creatroomCallback {
+                    n_complete(true)
+                }
                 break
             case .InRoom:
                 break
             case .OutRoom:
                 break
             case .QueryRoomList:
+                _analysisQueryRoomList(jsonDic: jsonDic)
                 break
                 
             default:
@@ -167,7 +174,7 @@ extension SocketControl {
     }
     
     fileprivate func _analysisUserList(jsonDic:[String:Any]) {
-        if let userList = jsonDic["userList"] as? [[String:String]] {
+        if let userList = jsonDic["message"] as? [[String:String]] {
             var userModelList:[SocketUserModel] = []
             for userDic in userList {
                 let userModel = SocketUserModel(json: userDic)
@@ -177,6 +184,16 @@ extension SocketControl {
             if let complete = _queryUserListCallback {
                 complete(userModelList)
             }
+        }
+    }
+    
+    fileprivate func _analysisQueryRoomList(jsonDic:[String:Any]) {
+        guard let roomList = jsonDic["message"] as? [[String:Any]] else {
+            debugPrint("query room list error")
+            return
+        }
+        if let complete = _queryRoomListCallback {
+            complete(roomList)
         }
     }
 }

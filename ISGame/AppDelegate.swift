@@ -8,8 +8,8 @@
 
 import UIKit
 
-let Host = "192.168.28.172:8080"
-let Socket_Host = "wx://192.168.28.172:8282/chat"
+let Host = "192.168.1.105:8080"
+let Socket_Host = "wx://192.168.1.105:8282/chat"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         homeVC.title = "首页"
         let pcVC = PersonalCenterViewController()
         pcVC.title = "个人中心"
-        tabBarC.viewControllers = [homeVC, pcVC]
+        
+        tabBarC.viewControllers = [UINavigationController(rootViewController: homeVC), UINavigationController(rootViewController: pcVC)]
         window!.rootViewController = tabBarC
         window!.makeKeyAndVisible()
         
