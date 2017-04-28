@@ -17,13 +17,14 @@ class PersonalCenterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
         
         SocketControl.instance.connectHost()
         
         let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 10, y: 50, width: 100, height: 30)
-        button.setTitle("user list", for: .normal)
+        button.frame = CGRect(x: 10, y: 70, width: 100, height: 30)
+        button.backgroundColor = UIColor.cyan
+        button.setTitle("在线用户", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         self.view.addSubview(button)
         

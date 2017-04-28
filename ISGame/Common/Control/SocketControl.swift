@@ -31,14 +31,17 @@ enum SocketCode:Int {
 class SocketControl {
     
     static let instance = SocketControl()
+    weak var reciveGroupDelegate:SocketControlReceiveGroup?
+    
     fileprivate let _socket = WebSocket(url: URL(string:Socket_Host)!, protocols: ["ISGame"])
     fileprivate var _uid:String = ""
     fileprivate var _name:String = ""
     
     /// 查询在线用户成功回调
     fileprivate var _queryUserListCallback:(([SocketUserModel])->Void)?
-    fileprivate var _creatroomCallback:((Bool)->Void)?
+    fileprivate var _creatroomCallback:(([String:Any])->Void)?
     fileprivate var _queryRoomListCallback:(([[String:Any]])->Void)?
+    fileprivate var _queryInRoomCallback:(([String:Any])->Void)?
     
     init() {
         _socket.delegate = self
@@ -97,15 +100,22 @@ class SocketControl {
 extension SocketControl {
     
     /// 创建房间
-    func creatRoom(complete:@escaping (Bool)->Void) {
+    func creatRoom(complete:@escaping ([String:Any])->Void) {
         _creatroomCallback = complete
         let dic = ["code":SocketCode.CreatRoom.rawValue]
         _sendData(jsonDic: dic)
     }
 
     /// 加入房间
-    func inRoom(roomID:String) {
+    func inRoom(roomID:String, complete:@escaping ([String:Any])->Void) {
+        _queryInRoomCallback = complete
         let dic:[String:Any] = ["code":SocketCode.InRoom.rawValue, "room_id":roomID]
+        _sendData(jsonDic: dic)
+    }
+    
+    /// 退出房间
+    func outRoom(roomID:String) {
+        let dic:[String:Any] = ["code":SocketCode.OutRoom.rawValue, "room_id":roomID]
         _sendData(jsonDic: dic)
     }
     
@@ -117,8 +127,12 @@ extension SocketControl {
     }
     
     /// 发送群消息
-    func sendGroupMessage() {
-        
+    func sendGroupMessage(msg:String, roomID:String) {
+        let messageDic = ["type":"text", "content": msg]
+        let dic:[String:Any] = ["code":SocketCode.Group.rawValue,
+                                "message":messageDic,
+                                "room_id":roomID]
+        _sendData(jsonDic: dic)
     }
 }
 
@@ -150,13 +164,19 @@ extension SocketControl {
             case .Chat:
                 break
             case .Group:
+                if let messageDic = jsonDic["message"] as? [String:Any], let g_delegate = reciveGroupDelegate {
+                    g_delegate.socketControlReceiveGroupMessage(messageDic: messageDic)
+                }
                 break
             case .CreatRoom:
                 if let n_complete = _creatroomCallback {
-                    n_complete(true)
+                    n_complete(jsonDic)
                 }
                 break
             case .InRoom:
+                if let n_complete = _queryInRoomCallback {
+                    n_complete(jsonDic)
+                }
                 break
             case .OutRoom:
                 break
@@ -227,4 +247,8 @@ extension SocketControl: WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         debugPrint("socket did recive message \(text)")
     }
+}
+
+protocol SocketControlReceiveGroup: class {
+    func socketControlReceiveGroupMessage(messageDic:[String:Any])
 }

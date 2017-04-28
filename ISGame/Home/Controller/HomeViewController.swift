@@ -20,19 +20,19 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.magenta
+        view.backgroundColor = UIColor.white
         
         let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 10, y: 100, width: 100, height: 40)
-        button.backgroundColor = UIColor.yellow
-        button.setTitle("creat room", for: .normal)
+        button.frame = CGRect(x: 10, y: 80, width: 100, height: 40)
+        button.backgroundColor = UIColor.red
+        button.setTitle("创建房间", for: .normal)
         button.addTarget(self, action: #selector(creatRoomAction), for: .touchUpInside)
         view.addSubview(button)
         
         let queryRoomList = UIButton(type: .custom)
-        queryRoomList.frame = CGRect(x: 120, y: 100, width: 100, height: 40)
-        queryRoomList.backgroundColor = UIColor.blue
-        queryRoomList.setTitle("query room list", for: .normal)
+        queryRoomList.frame = CGRect(x: 120, y: 80, width: 100, height: 40)
+        queryRoomList.backgroundColor = UIColor.purple
+        queryRoomList.setTitle("刷新房间", for: .normal)
         queryRoomList.addTarget(self, action: #selector(queryRoomListAction), for: .touchUpInside)
         view.addSubview(queryRoomList)
         
@@ -77,13 +77,13 @@ extension HomeViewController {
     }
     
     func creatRoomAction() {
-        SocketControl.instance.creatRoom { [unowned self] (success) in
-            if success {
-                let vc = GameViewController()
+        SocketControl.instance.creatRoom(complete: { [unowned self] (jsonDic) in
+            if let message = jsonDic["message"] as? [String:Any], let room_id = message["room_id"] as? String {
+                let vc = GameViewController(roomID: room_id)
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-        }
+        })
     }
     
     func queryRoomListAction() {
@@ -108,5 +108,19 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _roomList.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if _roomList.count > indexPath.row, let room_id = _roomList[indexPath.row]["room_id"] as? String {
+            
+            SocketControl.instance.inRoom(roomID: room_id, complete: { [unowned self] (jsonDic) in
+                let vc = GameViewController(roomID: room_id)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            
+        }
     }
 }
