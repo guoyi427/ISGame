@@ -49,6 +49,15 @@ class GameViewController: UIViewController {
         _tableView.dataSource = self
         _tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: _cellIdentifier)
         view.addSubview(_tableView)
+        
+        let recorderButton = UIButton(type: .custom)
+        recorderButton.frame = CGRect(x: sendButton.frame.minX - 60, y: sendButton.frame.minY, width: 50, height: 30)
+        recorderButton.setTitle("录音", for: .normal)
+        recorderButton.backgroundColor = UIColor.red
+        recorderButton.addTarget(self, action: #selector(recorderStartActoin), for: .touchDown)
+        recorderButton.addTarget(self, action: #selector(recorderStopAction), for: .touchUpInside)
+        view.addSubview(recorderButton)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +85,14 @@ extension GameViewController {
         
         SocketControl.instance.sendGroupMessage(msg: content, roomID: room_id)
         _textField.text = ""
+    }
+    
+    @objc fileprivate func recorderStartActoin() {
+        RecordControl.instance.record()
+    }
+    
+    @objc fileprivate func recorderStopAction() {
+        RecordControl.instance.stop()
     }
 }
 

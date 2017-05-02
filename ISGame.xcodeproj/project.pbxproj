@@ -19,6 +19,8 @@
 		5D3EC2AD1EB05027009168A2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3EC2AC1EB05027009168A2 /* GameViewController.swift */; };
 		5D61F1E01EAF204200CAB743 /* SocketUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D61F1DF1EAF204200CAB743 /* SocketUserModel.swift */; };
 		5D8E1DF41EB338C60063B92C /* RecordControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E1DF31EB338C60063B92C /* RecordControl.swift */; };
+		5D8E1DF61EB344250063B92C /* AudioPlayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E1DF51EB344250063B92C /* AudioPlayControl.swift */; };
+		5D8E1DF81EB348190063B92C /* UploadFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8E1DF71EB348190063B92C /* UploadFileManager.swift */; };
 		5DC09E9E1EA60DDD00E173F1 /* WechatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */; };
 		5DC09EA11EA61E1900E173F1 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */; };
 		5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE342681EA8A7AD00E271A4 /* CustomColor.swift */; };
@@ -65,6 +67,8 @@
 		5D3EC2AC1EB05027009168A2 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5D61F1DF1EAF204200CAB743 /* SocketUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketUserModel.swift; sourceTree = "<group>"; };
 		5D8E1DF31EB338C60063B92C /* RecordControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordControl.swift; sourceTree = "<group>"; };
+		5D8E1DF51EB344250063B92C /* AudioPlayControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayControl.swift; sourceTree = "<group>"; };
+		5D8E1DF71EB348190063B92C /* UploadFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFileManager.swift; sourceTree = "<group>"; };
 		5DC09E9D1EA60DDD00E173F1 /* WechatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatManager.swift; sourceTree = "<group>"; };
 		5DC09E9F1EA6109C00E173F1 /* ISGame+bridging+Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ISGame+bridging+Header.h"; sourceTree = "<group>"; };
 		5DC09EA01EA61E1900E173F1 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				5D8E1DF31EB338C60063B92C /* RecordControl.swift */,
+				5D8E1DF51EB344250063B92C /* AudioPlayControl.swift */,
+				5D8E1DF71EB348190063B92C /* UploadFileManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -481,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D8E1DF81EB348190063B92C /* UploadFileManager.swift in Sources */,
 				5DE3426B1EA8A7BE00E271A4 /* SocketControl.swift in Sources */,
 				30A873D61EA24D9100CCCE8B /* LoginViewController.swift in Sources */,
 				5DE342691EA8A7AD00E271A4 /* CustomColor.swift in Sources */,
@@ -493,6 +500,7 @@
 				30A873CE1EA24C9200CCCE8B /* HomeViewController.swift in Sources */,
 				5D3EC2AD1EB05027009168A2 /* GameViewController.swift in Sources */,
 				30A873D21EA24D0C00CCCE8B /* PersonalCenterViewController.swift in Sources */,
+				5D8E1DF61EB344250063B92C /* AudioPlayControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

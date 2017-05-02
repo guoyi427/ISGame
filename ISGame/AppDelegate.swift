@@ -8,8 +8,8 @@
 
 import UIKit
 
-let Host = "192.168.36.20:8080"
-let Socket_Host = "wx://192.168.36.20:8282/chat"
+let Host = "172.20.10.2:8080"
+let Socket_Host = "wx://172.20.10.2:8282/chat"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
