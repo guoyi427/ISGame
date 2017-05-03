@@ -134,6 +134,15 @@ extension SocketControl {
                                 "room_id":roomID]
         _sendData(jsonDic: dic)
     }
+    
+    /// 发送群语音
+    func sendGroupAudio(url:String, roomID:String) {
+        let messageDic = ["type":"audio", "content": url]
+        let dic:[String:Any] = ["code":SocketCode.Group.rawValue,
+                                "message":messageDic,
+                                "room_id":roomID]
+        _sendData(jsonDic: dic)
+    }
 }
 
 //MARK: Private Methods

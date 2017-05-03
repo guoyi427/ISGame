@@ -11,9 +11,13 @@ import AVFoundation
 
 class RecordControl: NSObject {
     static let instance = RecordControl()
-    fileprivate let _filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+    fileprivate let _filePath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first
+    fileprivate var _fileName = ""
     
     var _recorder:AVAudioRecorder?
+    /// 录音完成
+    var recorderCompleteClosure:((Data, String)->Void)?
+    
     
     override init() {
         super.init()
@@ -33,7 +37,9 @@ class RecordControl: NSObject {
             debugPrint(error)
         }
         
-        let url = URL(fileURLWithPath: _filePath!+"/recorder.caf")
+        let timestampStr = String(format: "%.0f", arguments: [Date().timeIntervalSince1970*1000.0])
+        _fileName = UserControl.shared.getUid()+"_"+timestampStr+".caf"
+        let url = URL(fileURLWithPath: _filePath! + "/" + _fileName)
         
         let settings:[String:Any] = [AVFormatIDKey:kAudioFormatLinearPCM,
                                      AVSampleRateKey:8000,
@@ -53,12 +59,13 @@ class RecordControl: NSObject {
         _recorder?.record()
     }
     
-    func stop() {
+    func stop() -> RecordControl {
         guard _recorder != nil else {
             debugPrint("recorder empty")
-            return
+            return self
         }
         _recorder?.stop()
+        return self
     }
     
 }
@@ -68,15 +75,13 @@ extension RecordControl: AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         debugPrint(flag)
         if flag {
-            AudioPlayControl.instance.play(path: _filePath!+"/recorder.caf")
-            
-            let url = URL(fileURLWithPath: _filePath!+"/recorder.caf")
+            let url = URL(fileURLWithPath: _filePath! + "/" + _fileName)
 
             do {
                 let recorderData = try Data.init(contentsOf: url)
-                UploadFileManager.instance.updateFile(data: recorderData)
-                
-                
+                if let complete = recorderCompleteClosure {
+                    complete(recorderData, _fileName)
+                }
             } catch {
                 debugPrint("error")
             }

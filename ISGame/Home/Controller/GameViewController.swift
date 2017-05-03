@@ -87,12 +87,26 @@ extension GameViewController {
         _textField.text = ""
     }
     
+    /// 录音开始
     @objc fileprivate func recorderStartActoin() {
         RecordControl.instance.record()
     }
     
+    /// 录音结束
     @objc fileprivate func recorderStopAction() {
-        RecordControl.instance.stop()
+        RecordControl.instance.stop().recorderCompleteClosure = {
+            [unowned self] recorderData, audioFileName in
+            //  上传
+            UploadFileManager.instance.updateFile(data: recorderData, fileName: audioFileName).uploadCompleteClosure = {
+                json in
+                debugPrint(json)
+                if let list = json["image"] as? [String], let urlPath = list.first {
+                    debugPrint(urlPath)
+                    //  发送
+                    SocketControl.instance.sendGroupAudio(url: urlPath, roomID: self.room_id)
+                }
+            }
+        }
     }
 }
 
@@ -112,6 +126,15 @@ extension GameViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if _chatHistoryList.count > indexPath.row {
+            let messageDic = _chatHistoryList[indexPath.row]
+            if let type = messageDic["type"] as? String, let content = messageDic["content"] as? String, type == "audio" {
+                AudioPlayControl.instance.play(url: Host + content)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _chatHistoryList.count
     }
@@ -127,5 +150,8 @@ extension GameViewController: SocketControlReceiveGroup {
         debugPrint(messageDic)
         _chatHistoryList.insert(messageDic, at: 0)
         _tableView.reloadData()
+        if let type = messageDic["type"] as? String, let content = messageDic["content"] as? String, type == "audio" {
+            AudioPlayControl.instance.play(url: Host + content)
+        }
     }
 }
